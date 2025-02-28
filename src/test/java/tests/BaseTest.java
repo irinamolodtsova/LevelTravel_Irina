@@ -13,13 +13,12 @@ import static helpers.JenkinsProperties.*;
 
 public class BaseTest {
 
-    @Step("Open Main Page")
-
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = "https://level.travel/";
         Configuration.pageLoadStrategy = "eager";
         Configuration.timeout = 10000;
+
 
         Configuration.browser = getBrowser();
         Configuration.browserVersion = getBrowserVersion();

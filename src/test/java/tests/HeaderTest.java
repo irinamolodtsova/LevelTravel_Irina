@@ -10,7 +10,7 @@ import pages.MainPage;
 import static com.codeborne.selenide.Selenide.sleep;
 
 @Tag("level_travel")
-public class HeaderTest {
+public class HeaderTest extends BaseTest{
 
     Header header = new Header();
 
