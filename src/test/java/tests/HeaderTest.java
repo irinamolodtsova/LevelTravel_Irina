@@ -65,7 +65,7 @@ public class HeaderTest extends BaseTest{
                 .checkHelp(contacts);
     }
 
-    @DisplayName("Проверка открытии модального окна при нажатии Напишите нам")
+    @DisplayName("Проверка открытия модального окна при нажатии Напишите нам")
     @Test
     void contactUsTest() {
         header.contactUsClick()
