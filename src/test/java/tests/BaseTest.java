@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
-
-import static com.codeborne.selenide.Selenide.open;
 import static helpers.JenkinsProperties.*;
 
 public class BaseTest {
