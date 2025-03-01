@@ -1,33 +1,25 @@
 package tests;
 
-import components.Header;
-import helpers.Attach;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import components.HeaderComponent;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import pages.MainPage;
 
-import static com.codeborne.selenide.Selenide.sleep;
+import static com.codeborne.selenide.Selenide.open;
+
 
 @Tag("level_travel")
-public class HeaderTest extends BaseTest{
+public class HeaderTest extends BaseTest {
 
-    Header header = new Header();
+    HeaderComponent header = new HeaderComponent();
 
-    MainPage mainpage = new MainPage();
 
     @BeforeEach
     void beforeEach() {
-        mainpage.openPage();
-        sleep(2000);
-    }
-
-    @AfterEach
-    void addAttachments() {
-        Attach.screenshotAs("Last screenshot");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
+        open("https://level.travel/");
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
     }
 
     @DisplayName("Проверка доступных Header Icon на главной странице")
@@ -69,6 +61,6 @@ public class HeaderTest extends BaseTest{
     @Test
     void contactUsTest() {
         header.contactUsClick()
-                .contactusModelWindowExists();
+                .contactUsModelWindowExists();
     }
 }

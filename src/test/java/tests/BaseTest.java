@@ -1,25 +1,22 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
-import io.qameta.allure.Step;
-import io.qameta.allure.selenide.AllureSelenide;
+import com.codeborne.selenide.Selenide;
+import helpers.Attach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.util.Map;
 
+import static com.codeborne.selenide.Selenide.open;
 import static helpers.JenkinsProperties.*;
 
 public class BaseTest {
 
     @BeforeAll
     static void beforeAll() {
-        Configuration.baseUrl = "https://level.travel/";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.timeout = 10000;
-
-
         Configuration.browser = getBrowser();
         Configuration.browserVersion = getBrowserVersion();
         Configuration.browserSize = getBrowserSize();
@@ -31,7 +28,14 @@ public class BaseTest {
                 "enableVideo", true
         ));
         Configuration.browserCapabilities = capabilities;
+    }
 
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last screenshot");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
+        Selenide.closeWebDriver();
     }
 }
